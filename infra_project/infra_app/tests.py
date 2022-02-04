@@ -9,15 +9,15 @@ class StaticPagesURLTests(TestCase):
     def test_about_url_exists_at_desired_location(self):
         """Проверка доступности страниц."""
         response = self.guest_client.get("/")
-        self.assertEqual(response, HTTPStatus.OK)
+        self.assertEqual(response.status_code, HTTPStatus.OK.value)
 
         response = self.guest_client.get("/second_page/")
-        self.assertEqual(response, HTTPStatus.OK)
+        self.assertEqual(response.status_code, HTTPStatus.OK.value)
 
     def test_page_shows_correct_content(self):
         """Проверка контента страниц."""
         response = self.guest_client.get("/")
-        self.assertContains(response.text, "У меня получилось!")
+        self.assertContains(response.content, "У меня получилось!")
 
         response = self.guest_client.get("/second_page/")
-        self.assertContains(response.text, "А это вторая страница!")
+        self.assertContains(response.content, "А это вторая страница!")
