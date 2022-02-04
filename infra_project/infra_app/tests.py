@@ -12,7 +12,6 @@ class StaticPagesURLTests(TestCase):
         cache.clear()
         response = self.guest_client.get("/")
         self.assertEqual(response.status_code, HTTPStatus.OK.value)
-        
         cache.clear()
         response = self.guest_client.get("/second_page/")
         self.assertEqual(response.status_code, HTTPStatus.OK.value)
@@ -22,7 +21,6 @@ class StaticPagesURLTests(TestCase):
         cache.clear()
         response = self.guest_client.get("/")
         self.assertContains(response, "У меня получилось!")
-        
         cache.clear()
         response = self.guest_client.get("/second_page/")
         self.assertContains(response, "А это вторая страница!")
